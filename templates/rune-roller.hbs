@@ -1,0 +1,63 @@
+<div class="vlr-roller-wrapper">
+
+  {{#if rolling}}
+  {{!-- État : lancer en cours --}}
+  <div class="vlr-rolling-state">
+    <div class="vlr-spin-runes" aria-label="Lancer en cours">
+      <span class="vlr-spin-symbol">ᚠ</span>
+      <span class="vlr-spin-symbol">ᚺ</span>
+      <span class="vlr-spin-symbol">ᛏ</span>
+    </div>
+    <p class="vlr-rolling-text">Les runes parlent…</p>
+  </div>
+
+  {{else if hasResult}}
+  {{!-- État : résultat affiché --}}
+  <div class="vlr-result-state">
+
+    <div class="vlr-aett-label">{{result.aett.name}}</div>
+
+    <div class="vlr-symbol-wrap {{#if result.isInverted}}is-inverted{{/if}}">
+      <span class="vlr-big-symbol">{{result.rune.symbol}}</span>
+    </div>
+
+    <div class="vlr-rune-title">
+      <span class="vlr-rune-num">{{result.rune.number}}.</span>
+      <span class="vlr-rune-name">{{result.rune.name}}</span>
+    </div>
+
+    <div class="vlr-orientation-pill {{#if result.isInverted}}pill-inverted{{else}}pill-upright{{/if}}">
+      {{#if result.isInverted}}
+        <i class="fas fa-rotate-180"></i> À l'envers
+      {{else}}
+        <i class="fas fa-arrow-up"></i> À l'endroit
+      {{/if}}
+    </div>
+
+    <div class="vlr-keywords">{{ result.reading.keywords }}</div>
+
+    <div class="vlr-result-actions">
+      <button type="button" data-action="rollAgain" class="vlr-btn vlr-btn-secondary">
+        <i class="fas fa-redo"></i> Relancer
+      </button>
+      <button type="button" data-action="sendToChat" class="vlr-btn vlr-btn-primary">
+        <i class="fas fa-comments"></i> Envoyer en discussion
+      </button>
+    </div>
+  </div>
+
+  {{else}}
+  {{!-- État initial --}}
+  <div class="vlr-initial-state">
+    <div class="vlr-intro-symbols">ᚠ ᚺ ᛏ ᛁ ᛞ ᚹ ᛉ ᛒ</div>
+    <p class="vlr-intro-text">
+      Tirez une rune du Futhark Ancien pour révéler votre destin.<br>
+      <em>Le dé à 24 faces peut être lu à l'endroit ou à l'envers.</em>
+    </p>
+    <button type="button" data-action="rollRune" class="vlr-btn vlr-btn-primary vlr-btn-large">
+      <i class="fas fa-dice-d20"></i> Lancer les runes
+    </button>
+  </div>
+  {{/if}}
+
+</div>

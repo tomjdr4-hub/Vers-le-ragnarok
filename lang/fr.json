@@ -1,0 +1,20 @@
+{
+  "VLR": {
+    "runeRoller": {
+      "title": "Divination par les Runes"
+    },
+    "keybindings": {
+      "openRuneRoller": "Ouvrir le lanceur de runes",
+      "openRuneRollerHint": "Ouvre la fenêtre de divination par les runes (dé à 24 faces)"
+    },
+    "aetts": {
+      "freyja":    "Ætt de Freyja",
+      "heimdallr": "Ætt de Heimdallr",
+      "tyr":       "Ætt de Týr"
+    },
+    "orientation": {
+      "upright":  "À l'endroit",
+      "inverted": "À l'envers"
+    }
+  }
+}

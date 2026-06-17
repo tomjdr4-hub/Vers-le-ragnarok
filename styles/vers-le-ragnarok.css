@@ -1,0 +1,420 @@
+/* ================================================================
+   Vers le Ragnarök — Module Foundry VTT
+   ================================================================ */
+
+/* ---------- Palette de couleurs ---------- */
+:root {
+  --vlr-bg-deep:      #0d0b14;
+  --vlr-bg-card:      #1a1628;
+  --vlr-bg-section:   #231e38;
+  --vlr-gold:         #c9a84c;
+  --vlr-gold-light:   #e8c96a;
+  --vlr-red:          #8b0000;
+  --vlr-red-bright:   #c0392b;
+  --vlr-green:        #2e7d32;
+  --vlr-green-bright: #43a047;
+  --vlr-text:         #e8e0d0;
+  --vlr-text-muted:   #9090a0;
+  --vlr-border:       #3a2f5a;
+  --vlr-border-gold:  #6b5a2a;
+}
+
+/* ================================================================
+   FENÊTRE DE LANCER (RuneRollerApp)
+   ================================================================ */
+
+.rune-roller-app .window-content {
+  padding: 0;
+  background: var(--vlr-bg-deep);
+  font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+}
+
+.vlr-roller-wrapper {
+  padding: 20px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- État initial --- */
+.vlr-initial-state {
+  text-align: center;
+  width: 100%;
+}
+
+.vlr-intro-symbols {
+  font-size: 1.6em;
+  letter-spacing: 6px;
+  color: var(--vlr-gold);
+  margin-bottom: 14px;
+  opacity: 0.7;
+}
+
+.vlr-intro-text {
+  color: var(--vlr-text-muted);
+  font-size: 0.9em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* --- État : animation de lancer --- */
+.vlr-rolling-state {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.vlr-spin-runes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.vlr-spin-symbol {
+  font-size: 2.5em;
+  color: var(--vlr-gold);
+  display: inline-block;
+  animation: vlrSpin 0.6s linear infinite;
+}
+
+.vlr-spin-symbol:nth-child(2) { animation-delay: 0.2s; }
+.vlr-spin-symbol:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes vlrSpin {
+  0%   { transform: rotateY(0deg);   opacity: 1;   }
+  50%  { transform: rotateY(90deg);  opacity: 0.3; }
+  100% { transform: rotateY(180deg); opacity: 1;   }
+}
+
+.vlr-rolling-text {
+  color: var(--vlr-gold);
+  font-style: italic;
+  animation: vlrPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes vlrPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* --- État : résultat --- */
+.vlr-result-state {
+  text-align: center;
+  width: 100%;
+  animation: vlrFadeIn 0.5s ease-out;
+}
+
+@keyframes vlrFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.vlr-aett-label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--vlr-gold);
+  margin-bottom: 12px;
+}
+
+.vlr-symbol-wrap {
+  margin: 8px 0 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vlr-big-symbol {
+  font-size: 5em;
+  line-height: 1;
+  color: var(--vlr-gold-light);
+  display: inline-block;
+  animation: vlrReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.5);
+}
+
+.vlr-symbol-wrap.is-inverted .vlr-big-symbol {
+  transform: rotate(180deg);
+  color: var(--vlr-red-bright);
+  text-shadow: 0 0 20px rgba(192, 57, 43, 0.5);
+  animation: vlrRevealInv 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes vlrReveal {
+  from { transform: scale(0.3) rotate(-180deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg);      opacity: 1; }
+}
+
+@keyframes vlrRevealInv {
+  from { transform: scale(0.3) rotate(0deg);   opacity: 0; }
+  to   { transform: scale(1) rotate(180deg);   opacity: 1; }
+}
+
+.vlr-rune-title {
+  margin-bottom: 8px;
+}
+
+.vlr-rune-num {
+  font-size: 0.9em;
+  color: var(--vlr-text-muted);
+  margin-right: 4px;
+}
+
+.vlr-rune-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--vlr-text);
+}
+
+.vlr-orientation-pill {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.vlr-orientation-pill.pill-upright {
+  background: rgba(46, 125, 50, 0.25);
+  border: 1px solid var(--vlr-green-bright);
+  color: #81c784;
+}
+
+.vlr-orientation-pill.pill-inverted {
+  background: rgba(139, 0, 0, 0.25);
+  border: 1px solid var(--vlr-red-bright);
+  color: #e57373;
+}
+
+.vlr-keywords {
+  color: var(--vlr-text-muted);
+  font-style: italic;
+  font-size: 0.88em;
+  margin-bottom: 18px;
+}
+
+.vlr-result-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+/* --- Boutons --- */
+.vlr-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 7px 16px;
+  font-family: inherit;
+  font-size: 0.88em;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vlr-btn:hover  { filter: brightness(1.15); }
+.vlr-btn:active { transform: scale(0.97); }
+
+.vlr-btn-primary {
+  background: var(--vlr-gold);
+  color: #1a1228;
+  font-weight: bold;
+}
+
+.vlr-btn-secondary {
+  background: var(--vlr-bg-section);
+  color: var(--vlr-text);
+  border: 1px solid var(--vlr-border);
+}
+
+.vlr-btn-large {
+  padding: 11px 28px;
+  font-size: 1em;
+}
+
+/* ================================================================
+   CARTE DE DISCUSSION (rune-chat-card.hbs)
+   ================================================================ */
+
+.vlr-chat-card {
+  background: linear-gradient(160deg, #131022 0%, #1a1628 60%, #0d1a2e 100%);
+  border: 1px solid var(--vlr-border-gold);
+  border-radius: 6px;
+  padding: 14px;
+  color: var(--vlr-text);
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.vlr-chat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top left,  rgba(201,168,76,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(90,50,150,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.vlr-chat-card.vlr-card-inverted {
+  background: linear-gradient(160deg, #1a0a0a 0%, #2a1018 60%, #1a0a0a 100%);
+  border-color: #6b2020;
+}
+
+.vlr-chat-card.vlr-card-inverted::before {
+  background:
+    radial-gradient(ellipse at top left,  rgba(192,57,43,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(139,0,0,0.08) 0%, transparent 60%);
+}
+
+/* En-tête de la carte */
+.vlr-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.vlr-card-aett {
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--vlr-gold);
+  border: 1px solid var(--vlr-border-gold);
+  border-radius: 3px;
+  padding: 2px 7px;
+  background: rgba(201,168,76,0.08);
+}
+
+.vlr-card-orient {
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vlr-card-orient.orient-up {
+  color: #81c784;
+  border: 1px solid #43a047;
+  background: rgba(46,125,50,0.2);
+}
+
+.vlr-card-orient.orient-inv {
+  color: #e57373;
+  border: 1px solid #c0392b;
+  background: rgba(139,0,0,0.2);
+}
+
+/* Symbole central */
+.vlr-card-symbol-area {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.vlr-card-symbol {
+  font-size: 4.5em;
+  line-height: 1;
+  display: inline-block;
+  color: var(--vlr-gold-light);
+  text-shadow: 0 0 24px rgba(201, 168, 76, 0.45);
+  animation: vlrCardReveal 0.6s ease-out;
+}
+
+.vlr-card-symbol.symbol-flipped {
+  transform: rotate(180deg);
+  color: #e57373;
+  text-shadow: 0 0 24px rgba(192, 57, 43, 0.45);
+}
+
+@keyframes vlrCardReveal {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1);   }
+}
+
+.vlr-card-symbol.symbol-flipped {
+  animation: vlrCardRevealFlipped 0.6s ease-out forwards;
+}
+
+@keyframes vlrCardRevealFlipped {
+  from { opacity: 0; transform: scale(0.5) rotate(0deg);   }
+  to   { opacity: 1; transform: scale(1)   rotate(180deg); }
+}
+
+/* Identité */
+.vlr-card-identity {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.vlr-card-num {
+  font-size: 0.85em;
+  color: var(--vlr-text-muted);
+  margin-right: 5px;
+}
+
+.vlr-card-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: var(--vlr-text);
+}
+
+.vlr-card-keywords {
+  text-align: center;
+  color: var(--vlr-text-muted);
+  font-size: 0.85em;
+  margin-bottom: 6px;
+}
+
+.vlr-card-divinity {
+  text-align: center;
+  font-size: 0.78em;
+  color: var(--vlr-gold);
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+/* Séparateur */
+.vlr-card-rule {
+  border: none;
+  border-top: 1px solid rgba(201, 168, 76, 0.2);
+  margin: 10px 0;
+}
+
+/* Sections de texte */
+.vlr-card-section {
+  margin-bottom: 8px;
+}
+
+.vlr-card-section-title {
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--vlr-gold);
+  margin-bottom: 5px;
+  opacity: 0.85;
+}
+
+.vlr-card-section p {
+  margin: 0;
+  font-size: 0.87em;
+  line-height: 1.55;
+  color: #ccc4dd;
+}
+
+.vlr-card-mechanic .vlr-card-section-title {
+  color: #aad4ff;
+}
+
+.vlr-card-mechanic p {
+  color: #ddeeff;
+}

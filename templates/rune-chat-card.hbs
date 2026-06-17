@@ -1,0 +1,54 @@
+<div class="vlr-chat-card {{#if isInverted}}vlr-card-inverted{{/if}}">
+
+  {{!-- En-tête --}}
+  <div class="vlr-card-header">
+    <span class="vlr-card-aett">{{aett.name}}</span>
+    <span class="vlr-card-orient {{#if isInverted}}orient-inv{{else}}orient-up{{/if}}">
+      {{#if isInverted}}
+        <i class="fas fa-rotate-180"></i> À l'envers
+      {{else}}
+        <i class="fas fa-arrow-up"></i> À l'endroit
+      {{/if}}
+    </span>
+  </div>
+
+  {{!-- Symbole central --}}
+  <div class="vlr-card-symbol-area">
+    <div class="vlr-card-symbol {{#if isInverted}}symbol-flipped{{/if}}">
+      {{rune.symbol}}
+    </div>
+  </div>
+
+  {{!-- Identité de la rune --}}
+  <div class="vlr-card-identity">
+    <span class="vlr-card-num">{{rune.number}}</span>
+    <span class="vlr-card-name">{{rune.name}}</span>
+  </div>
+
+  <div class="vlr-card-keywords"><em>{{reading.keywords}}</em></div>
+
+  <div class="vlr-card-divinity">
+    <i class="fas fa-star"></i> <em>{{reading.flavor}}, présidé·e par {{reading.divinity}}</em>
+  </div>
+
+  <hr class="vlr-card-rule">
+
+  {{!-- Effet de l'ætt --}}
+  <div class="vlr-card-section">
+    <div class="vlr-card-section-title">
+      {{#if isInverted}}Effet inverse de l'{{aett.name}}{{else}}Effet de l'{{aett.name}}{{/if}}
+    </div>
+    <p>{{reading.aettEffect}}</p>
+  </div>
+
+  <hr class="vlr-card-rule">
+
+  {{!-- Effet mécanique --}}
+  <div class="vlr-card-section vlr-card-mechanic">
+    <div class="vlr-card-section-title">
+      {{#if isInverted}}Effet inverse de la rune {{rune.name}}{{else}}Effet de la rune {{rune.name}}{{/if}}
+    </div>
+    <p>{{reading.runeEffect}}</p>
+  </div>
+
+</div>

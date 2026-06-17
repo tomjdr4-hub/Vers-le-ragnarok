@@ -1,0 +1,63 @@
+{
+  "id": "vers-le-ragnarok",
+  "title": "Vers le Ragnarök",
+  "description": "Module officiel pour Vers le Ragnarök — compendiums de classes, de sorts et d'historiques, et système de divination runique avec un dé à 24 faces pouvant être lu à l'endroit ou à l'envers.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Vers le Ragnarök"
+    }
+  ],
+  "esmodules": [
+    "scripts/module.js"
+  ],
+  "styles": [
+    "styles/vers-le-ragnarok.css"
+  ],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "classes",
+      "label": "Classes",
+      "path": "packs/classes",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "sorts",
+      "label": "Sorts",
+      "path": "packs/sorts",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "historiques",
+      "label": "Historiques",
+      "path": "packs/historiques",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "url": "https://github.com/tomjdr4-hub/Vers-le-ragnarok",
+  "manifest": "https://raw.githubusercontent.com/tomjdr4-hub/Vers-le-ragnarok/main/module.json",
+  "download": "https://github.com/tomjdr4-hub/Vers-le-ragnarok/releases/latest/download/vers-le-ragnarok.zip"
+}
