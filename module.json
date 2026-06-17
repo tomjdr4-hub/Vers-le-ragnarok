@@ -2,7 +2,7 @@
   "id": "vers-le-ragnarok",
   "title": "Vers le Ragnarök",
   "description": "Module officiel pour Vers le Ragnarök — compendiums de classes, de sorts et d'historiques, et système de divination runique avec un dé à 24 faces pouvant être lu à l'endroit ou à l'envers.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": {
     "minimum": "12",
     "verified": "14"
